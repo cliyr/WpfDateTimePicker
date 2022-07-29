@@ -1,0 +1,49 @@
+﻿<ContentControl x:Class="Utility.Tool.Controls.View.DateTimePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="25" 
+             d:DesignWidth="150" 
+             xmlns:my="clr-namespace:Utility.Tool.Controls.View" d:DataContext="{d:DesignInstance Type=my:DateTimePicker}"
+             MaxWidth="150"
+             MaxHeight="25"             
+             >
+
+    <Grid Height="25" Width="150">
+        <Border BorderBrush="Black" BorderThickness="0.2" HorizontalAlignment="Left" Width="150" Height="25" VerticalAlignment="Top">
+            <my:IconButton x:Name="iconButton1" Height="18" Width="19"  HorizontalAlignment="Right"
+                Base64Icon="iVBORw0KGgoAAAANSUhEUgAAABUAAAAQAgMAAACEtNy2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEWx0+3///9kp9t5paMJAAAAAWJLR0QB/wIt3gAAAAd0SU1FB+YHGwYxF3jyoHYAAAAxSURBVAjXY2DAA0RDgYCBQQDIZGRgEAwEAjC1aiKYmjoRLDe1Ec5DyIFUQvVBTYEAAIrVDlPrxC81AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA3LTI3VDA2OjQ5OjIzKzAwOjAw3tPW/gAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wNy0yN1QwNjo0OToyMyswMDowMK+ObkIAAAAASUVORK5CYII="
+                Click="iconButton1_Click"                
+                />
+        </Border>
+
+        <TextBlock Name="txt" Height="23" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Text="{Binding DateTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" Width="123" MouseUp="TextBlock_MouseDown"/>
+        <Grid x:Name="girdChioce" Background="Transparent" VerticalAlignment="Top" Margin="0,258,0,40">
+            <Popup x:Name="popChioce"  PopupAnimation="Fade" PlacementTarget="{Binding ElementName=girdChioce}" Placement="Top" AllowsTransparency="True" StaysOpen="False" IsOpen="False"/>
+        </Grid>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="txt" Storyboard.TargetProperty="Opacity" To="0.6"/>
+                            <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="iconButton1" Storyboard.TargetProperty="Opacity" To="0.9"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="txt" Storyboard.TargetProperty="Opacity" To="1.0"/>
+                            <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="iconButton1" Storyboard.TargetProperty="Opacity" To="1.0"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Grid.Triggers>
+    </Grid>
+</ContentControl>
